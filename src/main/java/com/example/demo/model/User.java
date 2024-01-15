@@ -9,14 +9,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    public User(String name, String cpf, String email, String password, String type) {
-        this.name = name;
-        this.cpf = cpf;
-        this.email = email;
-        this.password = password;
-        this.type = type;
-    }
-
+  
     @Column(length=92, nullable = false)
     private String name;
     
@@ -34,6 +27,14 @@ public class User {
 
     @Column(columnDefinition = "DECIMAL DEFAULT 0.0")
     private Float balance;
+    
+    public User(String name, String cpf, String email, String password, String type) {
+        this.name = name;
+        this.cpf = cpf;
+        this.email = email;
+        this.password = password;
+        this.type = type;
+    }
 
     public long getId() {
         return id;
