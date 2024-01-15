@@ -1,22 +1,21 @@
-package com.example.demo.model;
+package br.com.eduardo.learningspring.model;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name ="users")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-  
     @Column(length=92, nullable = false)
     private String name;
-    
-    @Column(length=11, nullable = false, unique = true)
+
+    @Column(length = 11, nullable = false, unique = true)
     private String cpf;
 
-    @Column(length=62, nullable = false, unique = true)
+    @Column(length = 62, nullable = false, unique = true)
     private String email;
 
     @Column(columnDefinition = "TEXT", nullable = false)
@@ -26,8 +25,11 @@ public class User {
     private String type;
 
     @Column(columnDefinition = "DECIMAL DEFAULT 0.0")
-    private Float balance;
-    
+    private float balance;
+
+    public User() {
+    }
+
     public User(String name, String cpf, String email, String password, String type) {
         this.name = name;
         this.cpf = cpf;
@@ -84,11 +86,11 @@ public class User {
         this.type = type;
     }
 
-    public Float getBalance() {
+    public float getBalance() {
         return balance;
     }
 
-    public void setBalance(Float balance) {
+    public void setBalance(float balance) {
         this.balance = balance;
     }
 }
