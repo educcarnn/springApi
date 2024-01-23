@@ -5,6 +5,8 @@ import br.com.eduardo.learningspring.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import br.com.eduardo.learningspring.dto.UserDto;
+import br.com.eduardo.learningspring.dto.CreateDepositDto;
 
 import java.util.List;
 
@@ -29,5 +31,24 @@ public class UserController {
         final List<User> allUsers = userService.readUsers();
 
         return new ResponseEntity<List<User>>(allUsers, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<User> retrieveUser(@PathVariable final String id) throws Exception {
+
+        final User user = userService.retrieveUser(Long.parseLong(id));
+
+        return new ResponseEntity<User>(user, HttpStatus.OK);
+    }
+
+
+    @PutMapping("/{id}")
+    public ResponseEntity<User> updateUser(@RequestBody final UserDto userData, @PathVariable final String id) throws Exception {
+
+        final User updatedUser = userService.updateUser(userData, Long.parseLong(id));
+
+
+        return new ResponseEntity<User>(updatedUser, HttpStatus.OK);
+
     }
 }

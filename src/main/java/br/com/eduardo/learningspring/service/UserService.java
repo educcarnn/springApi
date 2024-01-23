@@ -1,6 +1,8 @@
 package br.com.eduardo.learningspring.service;
 
 import br.com.eduardo.learningspring.model.User;
+import br.com.eduardo.learningspring.dto.CreateDepositDto;
+import br.com.eduardo.learningspring.dto.UserDto;
 import br.com.eduardo.learningspring.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -27,12 +29,13 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User retrieveUser(final long id) throws Exception{
+    public User retrieveUser(final long id) throws Exception {
+
         return userRepository.findById(id).orElseThrow(() -> new Exception("User not found"));
 
     }
 
-    public User updateUser(final User userData, final long id) throws  Exception{
+    public User updateUser(final UserDto userData, final long id) throws  Exception{
         final User foundUser = userRepository.findById(id).orElseThrow(() -> new Exception("User not found"));
 
         foundUser.setName(userData.getName());
